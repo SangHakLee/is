@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha",
     "eslint": "eslint ./src",
-    "coverage": "nyc --check-coverage npm run test",
+    "coverage": "npm run eslint && nyc --check-coverage npm run test",
     "coverage:report": "nyc --reporter=html npm run test",
     "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls"
   },
