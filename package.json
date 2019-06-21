@@ -1,0 +1,45 @@
+{
+  "name": "isempty",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha",
+    "coverage": "nyc --check-coverage npm run test",
+    "coverage:report": "nyc --reporter=html npm run test",
+    "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls"
+  },
+  "nyc": {
+    "check-coverage": true,
+    "branches": 75,
+    "lines": 75,
+    "functions": 80,
+    "statements": 80
+  },
+  "files": [
+    "src",
+    "index.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SangHakLee/isEmpty.git"
+  },
+  "keywords": [
+    "javascript",
+    "underscore",
+    "lodash"
+  ],
+  "author": "sanghaklee, <leesanghak7298@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SangHakLee/isEmpty/issues"
+  },
+  "homepage": "https://github.com/SangHakLee/isEmpty#readme",
+  "devDependencies": {
+    "coveralls": "^3.0.4",
+    "debug": "^4.1.1",
+    "mocha": "^6.1.4",
+    "mocha-lcov-reporter": "^1.3.0",
+    "nyc": "^14.1.1"
+  }
+}

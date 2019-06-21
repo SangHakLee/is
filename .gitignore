@@ -1,3 +1,7 @@
+# coverage
+.coveralls.yml
+
+#----------- github auto gen
 # Logs
 logs
 *.log
