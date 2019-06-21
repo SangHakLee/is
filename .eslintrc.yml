@@ -1,0 +1,151 @@
+---
+env:
+  es6: true
+  node: true
+  mocha: true
+extends: eslint:recommended
+parserOptions:
+  ecmaVersion: 9 # ECMAScript2018
+rules:
+  no-console: error # deploy 단계에선 console.log를 지우고 올리거나 주석 처리를 한다.
+  indent:
+  - error
+  - tab
+  linebreak-style: # CRLF
+  - error
+  - windows
+  quotes:
+  - error
+  - single
+  semi:
+  - error
+  - never
+  no-new-object: error # new Object()
+  no-array-constructor: error # new Array()
+  no-new-func: error # new Function()
+  object-shorthand: # https://eslint.org/docs/rules/object-shorthand.html
+  - error
+  - always
+  quote-props: # https://eslint.org/docs/rules/quote-props.html
+  - error
+  - as-needed # e.g.) 'is-props'
+
+  space-before-function-paren: # https://eslint.org/docs/rules/space-before-function-paren
+  - error
+  - anonymous: always
+    named: never
+    asyncArrow: always
+  space-before-blocks: # https://eslint.org/docs/rules/space-before-blocks
+  - error
+  - always
+  array-callback-return: error # https://eslint.org/docs/rules/array-callback-return
+  prefer-template: error # use `hello ${name}!`
+  template-curly-spacing: # https://eslint.org/docs/rules/template-curly-spacing
+  - error
+  - never # use `hello ${name}!`, not `hello ${ name}!`
+  no-eval: error
+#   func-style: # TODO:
+
+  no-param-reassign: error # https://eslint.org/docs/rules/no-param-reassign.html
+  function-paren-newline: # https://eslint.org/docs/rules/function-paren-newline
+  - error
+  - multiline #  하나에 줄 바꿈이 있으면 함수 괄호 안에 줄 바꿈이 필요합니다. 그렇지 않으면 줄 바꿈을 허용하지 않습니다.
+  prefer-arrow-callback: error
+  arrow-spacing:
+  - error
+  - before: true # () => {}
+    after: true # () => {}
+  eqeqeq:
+  - error
+  - always # use ===
+  brace-style:
+  - error
+  - 1tbs
+  - allowSingleLine: true
+  nonblock-statement-body-position:
+  - error
+  - beside
+  no-else-return: # https://eslint.org/docs/rules/no-else-return
+  - error
+  - allowElseIf: true
+  dot-notation: # https://eslint.org/docs/rules/dot-notation.html
+  - error
+  no-undef: 
+  - error # global https://eslint.org/docs/user-guide/configuring#specifying-globals
+  prefer-const: # https://eslint.org/docs/rules/prefer-const
+  - error
+  - destructuring: all # allow let {a, b} = obj
+  no-var:
+  - error
+  one-var:
+  - error
+  - never
+  no-multi-assign:
+  - error
+  no-unused-vars:
+  - error
+  - argsIgnorePattern: ^should$
+  no-unneeded-ternary: # https://eslint.org/docs/rules/no-unneeded-ternary.html
+  - error
+  - defaultAssignment: false # use default parameter
+  no-mixed-operators:
+  - error
+  spaced-comment:
+  - warn
+  - always
+  keyword-spacing: # https://eslint.org/docs/rules/keyword-spacing.html
+  - error
+  - before: true 
+    after: true 
+  space-infix-ops:
+  - warn # default parameter 옵션 때문에 warning
+  newline-per-chained-call: # https://eslint.org/docs/rules/newline-per-chained-call
+  - error
+  - ignoreChainWithDepth: 2
+  no-whitespace-before-property:
+  - error
+  padded-blocks: # https://eslint.org/docs/rules/padded-blocks.html
+  - error
+  - blocks: never
+    classes: never
+    switches: never
+  space-in-parens:
+  - error
+  - never
+  # - exceptions: 
+  #   - ()
+  array-bracket-spacing:
+  - warn
+  - never
+  - arraysInArrays: true
+  object-curly-spacing:
+  - warn
+  - never
+  # max-len:
+  # - warn
+  # - code: 80
+  block-spacing: # https://eslint.org/docs/rules/block-spacing
+  - error
+  comma-spacing:
+  - error
+  - before: false 
+    after: true
+  computed-property-spacing:
+  - error
+  - never
+  func-call-spacing:
+  - error
+  - never
+  key-spacing: # https://eslint.org/docs/rules/key-spacing
+  - error # align은 자유
+  - beforeColon: false
+    afterColon: true
+  no-multiple-empty-lines:
+  - warn
+  comma-style:
+  - error
+  - last
+  comma-dangle: # https://eslint.org/docs/rules/comma-dangle.html
+  - warn
+  - always-multiline
+  - functions: never

@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha",
+    "eslint": "eslint ./src",
     "coverage": "nyc --check-coverage npm run test",
     "coverage:report": "nyc --reporter=html npm run test",
     "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls"
@@ -18,7 +19,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm test",
+      "pre-commit": "npm run eslint && npm test",
       "pre-push": "npm run coverage"
     }
   },
@@ -44,6 +45,7 @@
   "devDependencies": {
     "coveralls": "^3.0.4",
     "debug": "^4.1.1",
+    "eslint": "^5.16.0",
     "husky": "^2.4.1",
     "lodash": "^4.17.11",
     "mocha": "^6.1.4",
