@@ -16,14 +16,14 @@ function Car() {
 }
 
 const valid = [
-	// '', [], {}, undefined, null
+	'', [], {}//, undefined, null
 ]
 const invalid = [
 	// true, false,
-	// Symbol, NaN, new Date(), new RegExp(), new Error(), new Function(),
-	// 1, 1.0, 'string' , [1], {a:1}
+	Symbol, NaN, new Date(), new RegExp(), new Error(), new Function(),
+	1, 1.0, 'string' , [1], {a:1}
 
-	new Number()
+	// new Number()
 ]
 
 describe('isEmpty', function() {
