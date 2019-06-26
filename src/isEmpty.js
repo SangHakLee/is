@@ -1,7 +1,8 @@
 const debug = require('debug')('isEmpty')
 
 /**
- * @description Check if parameter is empty
+ * @description Check if parameter is empty.
+ * 
  * 'empty' means 
  *   - an empty string
  *   - an empty array
