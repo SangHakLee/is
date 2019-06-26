@@ -5,26 +5,24 @@ const my = require('../index')
 const underscore = require('underscore')
 const lodash = require('lodash')
 
+const datas = require('./datas/isEmpty')
+
 const modules = [
 	{name: 'my', module: my},
+	// {name: 'old', module: {
+	// 	isEmpty: function(value){
+	// 		if( value == "" || value == null || value == undefined || ( value != null && typeof value == "object" && !Object.keys(value).length ) ){
+	// 			return true
+	// 		}else{
+	// 			return false
+	// 		}
+	// 	}
+	// }}
 	// {name: 'underscore', module: underscore},
 	// {name: 'lodash', module: lodash},
 ]
 
-function Car() {
-
-}
-
-const valid = [
-	'', [], {}//, undefined, null
-]
-const invalid = [
-	// true, false,
-	Symbol, NaN, new Date(), new RegExp(), new Error(), new Function(),
-	1, 1.0, 'string' , [1], {a:1}
-
-	// new Number()
-]
+const {valid, invalid} = datas
 
 describe('isEmpty', function() {
 	modules.forEach((m) => {

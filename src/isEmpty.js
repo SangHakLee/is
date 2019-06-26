@@ -2,27 +2,31 @@ const debug = require('debug')('isEmpty')
 
 /**
  * @description Check if parameter is empty
- * 'empty' is an empty string, an empty array, an empty object, null, undefined
- * @param {object} value 
+ * 'empty' means 
+ *   - an empty string
+ *   - an empty array
+ *   - an empty object (**allow `new Proxy({}, {})`**)
+ *   - null
+ *   - undefined
+ * @param {object} value parameter
+ * @returns {boolean}
  */
 const isEmpty = (value) => {
 	debug('value', value)
 	debug('typeof value', typeof value)
-	debug('Object.keys(value).length', Object.keys(value).length)
-	debug('value.constructor.name', value.constructor.name)
+	debug('Object.keys(value).length', value && Object.keys(value).length)
+	debug('Object.getOwnPropertyNames()', value && Object.getOwnPropertyNames(value))
+	debug('value.constructor.name', value && value.constructor && value.constructor.name)
 
 	if (value === null) return true
 	if (typeof value === 'undefined') return true
 	if (typeof value === 'string' && value === '') return true
-	if (Array.isArray(value) && value.length < 1) return true // [1]
-	if (typeof value === 'object' && value.constructor.name === 'Object' && Object.keys(value).length < 1) return true // {a:1}
-	// if (typeof value === 'object')
+	if (Array.isArray(value) && value.length < 1) return true
+	if (typeof value === 'object' && value.constructor.name === 'Object' && Object.keys(value).length < 1 && Object.getOwnPropertyNames(value) < 1) return true
 
-	// if (value === '' || value === null || value === undefined || (value !== null && typeof value === 'object' && !Object.keys(value).length)) {
-	// 	return true
-	// } 
+	if (typeof value === 'object' && value.constructor.name === 'String' && Object.keys(value).length < 1) return true // new String()
 
-	debug('isEmpty')
+	debug('isEmpty false')
 	return false
 }
 

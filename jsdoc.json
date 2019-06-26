@@ -1,0 +1,39 @@
+{
+    "tags": {
+      "allowUnknownTags": false, // jsdoc 미정의 태그 허용 여부
+      "dictionaries": ["jsdoc","closure"] //https://github.com/google/closure-compiler/wiki/Annotating-JavaScript-for-the-Closure-Compiler#jsdoc-tags
+    },
+    "source": {
+      "include": "./src", // 주석을 읽을 파일명이나 디렉토리명 배열
+      "includePattern": ".js$", // 읽을 파일의 패턴
+      "exclude": ["./docs"], // 제외할 파일명이나 디렉토리명 배열
+      "excludePattern": "(node_modules/|docs)" // 제외할 파일의 패턴
+    },
+    "plugins": [
+      "node_modules/jsdoc/plugins/markdown"
+    ],
+    "markdown":{
+        "idInHeadings": true
+    },
+    "opts": {
+      "template": "node_modules/countly-docdash", // 다운받은 템플릿 경로 // same as -t templates/default
+      "encoding": "utf8", // same as -e utf8
+      "destination": "./docs", // 문서를 만들 경로 // same as -d ./out/
+      "recurse": true, // same as -r
+      "verbose": true
+    },
+    "templates": {
+      "cleverLinks": true, // {@link } 안에 내용이 URL이면 http 링크 아니면 monospaceLinks
+      "monospaceLinks": true, // {@link User#greeting} 허용
+      "default": {
+        "outputSourceFiles": true, // jsdoc이 위치한 코드를 링크로 제공할 건지 여부
+        "includeDate": false // 문서 하단에 언제 만들어졌는지 표시 여부
+      }
+    },
+    "docdash": { // docdash 템플릿에서 지원하는 옵션
+      "static": true,
+      "sort": false,
+      "search": true,
+      "collapse": true
+    }
+}
