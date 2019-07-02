@@ -20,7 +20,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run eslint && npm test",
+      "pre-commit": "npm run eslint && npm test && npm run jsdoc",
       "pre-push": "npm run coverage"
     }
   },
