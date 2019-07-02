@@ -1,23 +1,27 @@
-# isEmpty
+# is
 
-[![Build Status](https://travis-ci.org/SangHakLee/isEmpty.svg?branch=master)](https://travis-ci.org/SangHakLee/isEmpty)
-[![Coverage Status](https://coveralls.io/repos/github/SangHakLee/isEmpty/badge.svg?branch=master)](https://coveralls.io/github/SangHakLee/isEmpty?branch=master)
+[![Build Status](https://travis-ci.org/SangHakLee/is.svg?branch=master)](https://travis-ci.org/SangHakLee/is)
+[![Coverage Status](https://coveralls.io/repos/github/SangHakLee/is/badge.svg?branch=master)](https://coveralls.io/github/SangHakLee/is?branch=master)
 
 # Usage
 
 ## Install
 ```bash
+$ npm i is-0 
+```
 
+```javascript
+const is = require('is-0')
 ```
 
 ## Example
 ### empty
 ```javascript
-isEmpty('')
+is.empty('')
 ```
 
 ### not empty
 ```javascript
-isEmpty('123')
+is.empty('123')
 ```
 
