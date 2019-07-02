@@ -42,7 +42,8 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>const debug = require('debug')('empty')
+            <pre class="prettyprint source linenums"><code>// const debug = require('debug')('empty')
+
 /**
  * @module is
  * @author sanghak,Lee &lt;code.ryan.lee@gmail.com>
@@ -65,11 +66,11 @@
  * is.empty(1) // false
  */
 const empty = (value) => {
-	debug('value', value)
-	debug('typeof value', typeof value)
-	debug('Object.keys(value).length', value &amp;&amp; Object.keys(value).length)
-	debug('Object.getOwnPropertyNames()', value &amp;&amp; Object.getOwnPropertyNames(value))
-	debug('value.constructor.name', value &amp;&amp; value.constructor &amp;&amp; value.constructor.name)
+	// debug('value', value)
+	// debug('typeof value', typeof value)
+	// debug('Object.keys(value).length', value &amp;&amp; Object.keys(value).length)
+	// debug('Object.getOwnPropertyNames()', value &amp;&amp; Object.getOwnPropertyNames(value))
+	// debug('value.constructor.name', value &amp;&amp; value.constructor &amp;&amp; value.constructor.name)
 
 	if (value === null) return true
 	if (typeof value === 'undefined') return true
@@ -79,7 +80,7 @@ const empty = (value) => {
 
 	if (typeof value === 'object' &amp;&amp; value.constructor.name === 'String' &amp;&amp; Object.keys(value).length &lt; 1) return true // new String()
 
-	debug('isEmpty false')
+	// debug('isEmpty false')
 	return false
 }
 
