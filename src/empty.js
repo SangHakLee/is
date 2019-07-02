@@ -1,4 +1,8 @@
 const debug = require('debug')('empty')
+/**
+ * @module is
+ * @author sanghak,Lee <code.ryan.lee@gmail.com>
+ */
 
 /**
  * @description Check if parameter is empty.
@@ -11,6 +15,10 @@ const debug = require('debug')('empty')
  *   - undefined
  * @param {object} value parameter
  * @returns {boolean}
+ * @example
+ * const is = require('is-0')
+ * is.empty('') // true
+ * is.empty(1) // false
  */
 const empty = (value) => {
 	debug('value', value)

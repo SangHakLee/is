@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>Home - Documentation</title>
+    <title>index.js - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -27,49 +27,32 @@
     
     <input type="text" id="nav-search" placeholder="Search" />
     
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-is.html">is</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-is.html#~empty">empty</a></li></ul></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-is.html">is</a></li></ul><h3>Global</h3><ul><li><a href="global.html#empty">empty</a></li></ul>
 </nav>
 
 <div id="main">
     
+    <h1 class="page-title">index.js</h1>
+    
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @module is
+ * @author sanghak,Lee &lt;code.ryan.lee@gmail.com>
+ */
 
-
-
-
-
-
-
-
-
-    
-
-
-    <section class="readme">
-        <article><h1 id="is">is</h1>
-<p><a href="https://travis-ci.org/SangHakLee/is"><img src="https://travis-ci.org/SangHakLee/is.svg?branch=master" alt="Build Status"></a>
-<a href="https://coveralls.io/github/SangHakLee/is?branch=master"><img src="https://coveralls.io/repos/github/SangHakLee/is/badge.svg?branch=master" alt="Coverage Status"></a></p>
-<h1 id="usage">Usage</h1>
-<h2 id="install">Install</h2>
-<pre class="prettyprint source lang-bash"><code>$ npm i is-0 
-</code></pre>
-<pre class="prettyprint source lang-javascript"><code>const is = require('is-0')
-</code></pre>
-<h2 id="example">Example</h2>
-<h3 id="empty">empty</h3>
-<pre class="prettyprint source lang-javascript"><code>is.empty('')
-</code></pre>
-<h3 id="not-empty">not empty</h3>
-<pre class="prettyprint source lang-javascript"><code>is.empty('123')
-</code></pre></article>
+const modules = {
+	empty: require('./empty'),
+}
+module.exports = modules</code></pre>
+        </article>
     </section>
-
-
 
 
 
