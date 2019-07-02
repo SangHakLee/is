@@ -1,4 +1,4 @@
 const modules = {
-	isEmpty: require('./isEmpty'),
+	empty: require('./empty'),
 }
 module.exports = modules

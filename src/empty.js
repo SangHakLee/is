@@ -1,4 +1,4 @@
-const debug = require('debug')('isEmpty')
+const debug = require('debug')('empty')
 
 /**
  * @description Check if parameter is empty.
@@ -12,7 +12,7 @@ const debug = require('debug')('isEmpty')
  * @param {object} value parameter
  * @returns {boolean}
  */
-const isEmpty = (value) => {
+const empty = (value) => {
 	debug('value', value)
 	debug('typeof value', typeof value)
 	debug('Object.keys(value).length', value && Object.keys(value).length)
@@ -31,4 +31,4 @@ const isEmpty = (value) => {
 	return false
 }
 
-module.exports = isEmpty
+module.exports = empty
