@@ -1,4 +1,5 @@
-const debug = require('debug')('empty')
+// const debug = require('debug')('empty')
+
 /**
  * @module is
  * @author sanghak,Lee <code.ryan.lee@gmail.com>
@@ -21,11 +22,11 @@ const debug = require('debug')('empty')
  * is.empty(1) // false
  */
 const empty = (value) => {
-	debug('value', value)
-	debug('typeof value', typeof value)
-	debug('Object.keys(value).length', value && Object.keys(value).length)
-	debug('Object.getOwnPropertyNames()', value && Object.getOwnPropertyNames(value))
-	debug('value.constructor.name', value && value.constructor && value.constructor.name)
+	// debug('value', value)
+	// debug('typeof value', typeof value)
+	// debug('Object.keys(value).length', value && Object.keys(value).length)
+	// debug('Object.getOwnPropertyNames()', value && Object.getOwnPropertyNames(value))
+	// debug('value.constructor.name', value && value.constructor && value.constructor.name)
 
 	if (value === null) return true
 	if (typeof value === 'undefined') return true
@@ -35,7 +36,7 @@ const empty = (value) => {
 
 	if (typeof value === 'object' && value.constructor.name === 'String' && Object.keys(value).length < 1) return true // new String()
 
-	debug('isEmpty false')
+	// debug('isEmpty false')
 	return false
 }
 
