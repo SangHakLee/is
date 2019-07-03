@@ -1,7 +1,7 @@
 {
   "name": "is-0",
   "version": "1.0.1",
-  "description": "",
+  "description": "Check if parameter is empty.",
   "main": "index.js",
   "scripts": {
     "test": "mocha test/index.spec.js",
@@ -35,14 +35,15 @@
   "keywords": [
     "javascript",
     "underscore",
-    "lodash"
+    "lodash",
+    "isEmpty"
   ],
   "author": "sanghaklee, <leesanghak7298@gmail.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/SangHakLee/is/issues"
   },
-  "homepage": "https://github.com/SangHakLee/is#readme",
+  "homepage": "https://sanghaklee.github.io/is",
   "devDependencies": {
     "countly-docdash": "^0.5.0",
     "coveralls": "^3.0.4",

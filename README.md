@@ -21,10 +21,35 @@ const is = require('is-0')
 ### empty
 ```javascript
 is.empty('')
+is.empty(new String())
+is.empty(``)
+is.empty(${``})
+
+is.empty([])
+is.empty(new Array())
+
+is.empty({})
+is.empty(new Object())
+
+is.empty(null)
+is.empty(undefined)
 ```
 
 ### not empty
 ```javascript
-is.empty('123')
-```
+is.empty(1)
+is.empty('string')
+is.empty([1])
+is.empty({a:1})
+is.empty(true)
+is.empty(false)
 
+is.empty(new Date())
+// other objects, except `new Object()`
+```
+- check `./test/datas/empty.js`
+
+## Tests
+```bash
+npm test
+```
