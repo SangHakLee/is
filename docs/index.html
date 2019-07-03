@@ -65,9 +65,35 @@
 <h2 id="example">Example</h2>
 <h3 id="empty">empty</h3>
 <pre class="prettyprint source lang-javascript"><code>is.empty('')
+is.empty(new String())
+is.empty(``)
+is.empty(${``})
+
+is.empty([])
+is.empty(new Array())
+
+is.empty({})
+is.empty(new Object())
+
+is.empty(null)
+is.empty(undefined)
 </code></pre>
 <h3 id="not-empty">not empty</h3>
-<pre class="prettyprint source lang-javascript"><code>is.empty('123')
+<pre class="prettyprint source lang-javascript"><code>is.empty(1)
+is.empty('string')
+is.empty([1])
+is.empty({a:1})
+is.empty(true)
+is.empty(false)
+
+is.empty(new Date())
+// other objects, except `new Object()`
+</code></pre>
+<ul>
+<li>check <code>./test/datas/empty.js</code></li>
+</ul>
+<h2 id="tests">Tests</h2>
+<pre class="prettyprint source lang-bash"><code>npm test
 </code></pre></article>
     </section>
 
