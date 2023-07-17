@@ -18,14 +18,14 @@ jobs:
         command: npm run coverage
 
 
-  coveralls:
-    executor: node-executor
-    steps:
-      - checkout
-      - node/install-packages
-      - run: 
-        command: npm run coveralls
-        name: coveralls
+  # coveralls:
+  #   executor: node-executor
+  #   steps:
+  #     - checkout
+  #     - node/install-packages
+  #     - run: 
+  #       command: npm run coveralls
+  #       name: coveralls
 
 workflows:
   matrix-tests:
