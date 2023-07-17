@@ -1,32 +1,6 @@
-version: 2.1
-
+version: '2.1'
 orbs:
-  node: circleci/node@5.0.2
-
-executors:
-  node-executor:
-    docker:
-      - image: cimg/node:lts
-
-jobs:
-  build_and_test:
-    executor: node-executor
-    steps:
-      - checkout
-      - node/install-packages
-      - run:
-        command: npm run coverage
-
-
-  # coveralls:
-  #   executor: node-executor
-  #   steps:
-  #     - checkout
-  #     - node/install-packages
-  #     - run: 
-  #       command: npm run coveralls
-  #       name: coveralls
-
+  node: circleci/node@5.1.0
 workflows:
   matrix-tests:
     jobs:
@@ -34,7 +8,6 @@ workflows:
           matrix:
             parameters:
               version:
-                - 6
-                - 8
-                - 10
-                - "latest"
+                - 13.11.0
+                - 12.16.0
+                - 10.19.0
