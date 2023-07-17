@@ -8,6 +8,10 @@ workflows:
           matrix:
             parameters:
               version:
-                - 13.11.0
-                - 12.16.0
-                - 10.19.0
+                # - "node"
+                - 18
+                - 16
+                - 12
+                - 10
+                - 8
+                - 6
