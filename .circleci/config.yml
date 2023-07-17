@@ -1,6 +1,16 @@
 version: '2.1'
 orbs:
-  node: circleci/node@5.1.0
+  node: circleci/node@lts
+
+jobs:
+  coveralls:
+    executor: node/default
+    steps:
+      - checkout
+      - node/install-packages
+      - run: npm run coveralls
+
+
 workflows:
   matrix-tests:
     jobs:
@@ -15,3 +25,4 @@ workflows:
                 - 10.24.1
                 - 8.17.0
                 # - 6.17.1 # not support
+      - coveralls
