@@ -1,9 +1,17 @@
 name: Publish Package
 
 on:
+  # 태그 푸시 (PAT로 생성된 것만 작동)
   push:
     tags:
-      - 'v*'  # v1.0.0 형태의 태그가 push되면 실행
+      - 'v*'
+
+  # ⭐ Release 이벤트 (semantic-release와 호환)
+  release:
+    types: [published]
+
+  # ⭐ 수동 실행
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -17,6 +25,17 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Get version from tag
+        id: version
+        run: |
+          if [[ "${{ github.event_name }}" == "release" ]]; then
+            VERSION="${{ github.event.release.tag_name }}"
+          else
+            VERSION="${GITHUB_REF#refs/tags/}"
+          fi
+          echo "version=${VERSION}" >> $GITHUB_OUTPUT
+          echo "📦 Publishing version: ${VERSION}"
 
       - name: Setup Node.js for npm
         uses: actions/setup-node@v4
@@ -35,11 +54,11 @@ jobs:
 
       # npm 배포 (NPM_TOKEN이 있을 때만)
       - name: Publish to npm
-        if: ${{ vars.NPM_TOKEN_EXISTS == 'true' }}  # Repository variables에서 체크
+        if: ${{ vars.NPM_TOKEN_EXISTS == 'true' }}
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        continue-on-error: true  # 실패해도 계속 진행
+        continue-on-error: true
 
       # GitHub Packages 배포
       - name: Setup for GitHub Packages
@@ -50,33 +69,22 @@ jobs:
 
       - name: Publish to GitHub Packages
         run: |
-          # Repository owner 자동 감지
+          # Repository 이름 자동 감지
+          REPO_NAME="${{ github.event.repository.name }}"
           REPO_OWNER="${{ github.repository_owner }}"
-          echo "📦 Publishing as @${REPO_OWNER}/is-0"
+          echo "📦 Publishing as @${REPO_OWNER}/${REPO_NAME}"
           
           # package.json의 name 필드를 동적으로 수정
           node -e "
             const fs = require('fs');
             const pkg = require('./package.json');
-            pkg.name = '@${REPO_OWNER}/is-0';
+            pkg.name = '@${REPO_OWNER}/${REPO_NAME}';
             fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2));
             console.log('Package name updated to:', pkg.name);
           "
           
-          # .npmrc 설정 (명시적으로)
-          echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" > .npmrc
-          echo "@${REPO_OWNER}:registry=https://npm.pkg.github.com" >> .npmrc
-          
-          # 발행
           npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # GitHub Release 생성
-      - name: Create GitHub Release
-        uses: softprops/action-gh-release@v2
-        with:
-          generate_release_notes: true
-          draft: false
-          prerelease: false
-          token: ${{ secrets.GITHUB_TOKEN }}
+      # GitHub Release는 이미 semantic-release가 생성했으므로 생략
