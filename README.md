@@ -15,6 +15,24 @@
 npm install is-0
 ```
 
+<details><summary>From GitHub Packages</summary>
+
+먼저 `.npmrc` 파일을 생성하거나 수정하세요:
+```bash
+@SangHakLee:registry=https://npm.pkg.github.com
+```
+
+그리고 GitHub Personal Access Token으로 인증:
+```bash
+npm login --scope=@SangHakLee --registry=https://npm.pkg.github.com
+```
+
+패키지 설치:
+```bash
+npm install @SangHakLee/is-0
+```
+</details>
+
 ## Usage
 
 ### JavaScript (CommonJS)

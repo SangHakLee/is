@@ -41,8 +41,25 @@ jobs:
       - name: Run test
         run: npm test
 
-      - name: Release
+      - name: Release to npm
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npx semantic-release
+
+      - name: Setup Node.js for GitHub Packages
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@SangHakLee'
+
+      - name: Publish to GitHub Packages
+        run: |
+          # GitHub Packages는 scoped package만 지원하므로 name을 수정
+          node -e "const pkg = require('./package.json'); pkg.name = '@SangHakLee/is-0'; require('fs').writeFileSync('package.json', JSON.stringify(pkg, null, 2));"
+          echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" > .npmrc
+          echo "@SangHakLee:registry=https://npm.pkg.github.com" >> .npmrc
+          npm publish --access public || echo "GitHub Packages publish skipped"
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

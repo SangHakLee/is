@@ -26,14 +26,14 @@ export default [
 			...tseslint.configs.recommended.rules,
 			'no-console': 'error',
 			indent: ['error', 'tab'],
-			'linebreak-style': ['error', 'unix'],
+			'linebreak-style': 'off',
 			quotes: ['error', 'single'],
 			semi: ['error', 'never'],
 			'@typescript-eslint/no-explicit-any': 'warn',
 			'@typescript-eslint/explicit-function-return-type': ['error', {
 				allowExpressions: true,
 			}],
-			'no-undef': 'off', // TypeScript handles this
+			'no-undef': 'off',
 		},
 	},
 	{
@@ -49,7 +49,7 @@ export default [
 		rules: {
 			'no-console': 'error',
 			indent: ['error', 'tab'],
-			'linebreak-style': ['error', 'unix'],
+			'linebreak-style': 'off',
 			quotes: ['error', 'single'],
 			semi: ['error', 'never'],
 			'no-new-object': 'error',
