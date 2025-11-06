@@ -1,8 +1,9 @@
 # is
 
 [![npm version](https://badge.fury.io/js/is-0.svg)](https://badge.fury.io/js/is-0)
-[![Build Status](https://travis-ci.org/SangHakLee/is.svg?branch=master)](https://travis-ci.org/SangHakLee/is)
-[![Coverage Status](https://coveralls.io/repos/github/SangHakLee/is/badge.svg?branch=master)](https://coveralls.io/github/SangHakLee/is?branch=master)
+[![CI](https://github.com/SangHakLee/is/actions/workflows/node.js.yml/badge.svg)](https://github.com/SangHakLee/is/actions/workflows/node.js.yml)
+[![codecov](https://codecov.io/gh/SangHakLee/is/branch/master/graph/badge.svg)](https://codecov.io/gh/SangHakLee/is)
+[![semantic-release: angular](https://img.shields.io/badge/semantic--release-angular-e10079?logo=semantic-release)](https://github.com/semantic-release/semantic-release)
 
 [![NPM](https://nodei.co/npm/is-0.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/is-0/)
 

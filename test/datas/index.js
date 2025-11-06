@@ -1,3 +1,3 @@
 module.exports = {
-	empty: require('./empty')
+	empty: require('./empty'),
 }
