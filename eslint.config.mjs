@@ -1,15 +1,48 @@
 import js from '@eslint/js'
 import globals from 'globals'
+import tseslint from '@typescript-eslint/eslint-plugin'
+import tsparser from '@typescript-eslint/parser'
 
 export default [
 	js.configs.recommended,
 	{
+		files: ['**/*.ts'],
+		languageOptions: {
+			parser: tsparser,
+			parserOptions: {
+				project: './tsconfig.json',
+				ecmaVersion: 2018,
+				sourceType: 'module',
+			},
+			globals: {
+				...globals.node,
+				...globals.es6,
+			},
+		},
+		plugins: {
+			'@typescript-eslint': tseslint,
+		},
+		rules: {
+			...tseslint.configs.recommended.rules,
+			'no-console': 'error',
+			indent: ['error', 'tab'],
+			'linebreak-style': ['error', 'unix'],
+			quotes: ['error', 'single'],
+			semi: ['error', 'never'],
+			'@typescript-eslint/no-explicit-any': 'warn',
+			'@typescript-eslint/explicit-function-return-type': ['error', {
+				allowExpressions: true,
+			}],
+			'no-undef': 'off', // TypeScript handles this
+		},
+	},
+	{
+		files: ['**/*.js', '**/*.mjs'],
 		languageOptions: {
 			ecmaVersion: 2018,
 			sourceType: 'module',
 			globals: {
 				...globals.node,
-				...globals.mocha,
 				...globals.es6,
 			},
 		},
@@ -22,70 +55,26 @@ export default [
 			'no-new-object': 'error',
 			'no-array-constructor': 'error',
 			'no-new-func': 'error',
-			'object-shorthand': ['error', 'always'],
-			'quote-props': ['error', 'as-needed'],
-			'space-before-function-paren': ['error', {
-				anonymous: 'always',
-				named: 'never',
-				asyncArrow: 'always',
-			}],
-			'space-before-blocks': ['error', 'always'],
-			'array-callback-return': 'error',
-			'prefer-template': 'error',
-			'template-curly-spacing': ['error', 'never'],
-			'no-eval': 'error',
-			'no-param-reassign': 'error',
-			'function-paren-newline': ['error', 'multiline'],
-			'prefer-arrow-callback': 'error',
-			'arrow-spacing': ['error', {before: true, after: true}],
-			eqeqeq: ['error', 'always'],
-			'brace-style': ['error', '1tbs', {allowSingleLine: true}],
-			'nonblock-statement-body-position': ['error', 'beside'],
-			'no-else-return': ['error', {allowElseIf: true}],
-			'dot-notation': 'error',
-			'no-undef': 'error',
-			'prefer-const': ['error', {destructuring: 'all'}],
-			'no-var': 'error',
-			'one-var': ['error', 'never'],
-			'no-multi-assign': 'error',
-			'no-unused-vars': ['error', {argsIgnorePattern: '^should$'}],
-			'no-unneeded-ternary': ['error', {defaultAssignment: false}],
-			'no-mixed-operators': 'error',
-			'spaced-comment': ['warn', 'always'],
-			'keyword-spacing': ['error', {before: true, after: true}],
-			'space-infix-ops': 'warn',
-			'newline-per-chained-call': ['error', {ignoreChainWithDepth: 2}],
-			'no-whitespace-before-property': 'error',
-			'padded-blocks': ['error', {
-				blocks: 'never',
-				classes: 'never',
-				switches: 'never',
-			}],
-			'space-in-parens': ['error', 'never'],
-			'array-bracket-spacing': ['warn', 'never', {arraysInArrays: true}],
-			'object-curly-spacing': ['warn', 'never'],
-			'block-spacing': 'error',
-			'comma-spacing': ['error', {before: false, after: true}],
-			'computed-property-spacing': ['error', 'never'],
-			'func-call-spacing': ['error', 'never'],
-			'key-spacing': ['error', {beforeColon: false, afterColon: true}],
-			'no-multiple-empty-lines': 'warn',
-			'comma-style': ['error', 'last'],
-			'comma-dangle': ['warn', {
-				arrays: 'always-multiline',
-				objects: 'always-multiline',
-				imports: 'always-multiline',
-				exports: 'always-multiline',
-				functions: 'never',
-			}],
 		},
 	},
 	{
-		files: ['test/**/*.js'],
+		files: ['test/**/*.ts'],
 		languageOptions: {
+			parser: tsparser,
+			parserOptions: {
+				project: './tsconfig.test.json',
+				ecmaVersion: 2018,
+				sourceType: 'module',
+			},
 			globals: {
 				...globals.jest,
 			},
+		},
+		plugins: {
+			'@typescript-eslint': tseslint,
+		},
+		rules: {
+			'@typescript-eslint/no-explicit-any': 'off',
 		},
 	},
 	{
@@ -93,6 +82,7 @@ export default [
 			'node_modules/**',
 			'docs/**',
 			'coverage/**',
+			'dist/**',
 			'.nyc_output/**',
 		],
 	},

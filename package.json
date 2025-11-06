@@ -2,22 +2,35 @@
   "name": "is-0",
   "version": "1.0.2",
   "description": "Check if parameter is empty.",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.js",
+      "import": "./dist/index.js"
+    }
+  },
   "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "prebuild": "rm -rf dist",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
-    "eslint": "eslint .",
-    "eslint:fix": "eslint . --fix",
+    "eslint": "eslint . --ext .ts,.js,.mjs",
+    "eslint:fix": "eslint . --ext .ts,.js,.mjs --fix",
     "coverage": "npm run eslint && jest --coverage",
     "coverage:report": "jest --coverage --coverageReporters=html",
-    "jsdoc": "jsdoc -c jsdoc.json --readme README.md",
+    "typedoc": "typedoc",
+    "docs": "npm run typedoc",
     "semantic-release": "semantic-release",
-    "prepare": "husky"
+    "prepare": "husky && npm run build",
+    "prepublishOnly": "npm run build"
   },
   "files": [
-    "src",
-    "index.js"
+    "dist",
+    "src"
   ],
   "repository": {
     "type": "git",
@@ -33,7 +46,7 @@
     "node": ">=20.0.0",
     "npm": ">=10.0.0"
   },
-  "author": "sanghaklee, <leesanghak7298@gmail.com>",
+  "author": "sanghaklee, <code.ryan.lee@gmail.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/SangHakLee/is/issues"
@@ -47,16 +60,24 @@
     "@semantic-release/git": "^10.0.1",
     "@semantic-release/github": "^11.0.6",
     "@semantic-release/npm": "^12.0.2",
+    "@types/debug": "^4.1.12",
+    "@types/jest": "^29.5.14",
+    "@types/lodash": "^4.17.20",
+    "@types/node": "^20.19.24",
+    "@types/underscore": "^1.13.0",
+    "@typescript-eslint/eslint-plugin": "^8.46.3",
+    "@typescript-eslint/parser": "^8.46.3",
     "debug": "^4.1.1",
-    "docdash": "^2.0.2",
     "easy-table": "^1.1.1",
     "eslint": "^9.39.1",
     "globals": "^15.15.0",
     "husky": "^9.1.7",
     "jest": "^29.7.0",
-    "jsdoc": "^4.0.5",
     "lodash": "^4.17.11",
     "semantic-release": "^24.2.9",
+    "ts-jest": "^29.4.5",
+    "typedoc": "^0.28.14",
+    "typescript": "^5.9.3",
     "underscore": "^1.9.1"
   }
 }

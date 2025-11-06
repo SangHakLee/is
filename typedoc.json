@@ -1,0 +1,19 @@
+{
+	"$schema": "https://typedoc.org/schema.json",
+	"entryPoints": ["./src/index.ts"],
+	"out": "./docs",
+	"plugin": [],
+	"excludePrivate": true,
+	"excludeProtected": true,
+	"excludeExternals": true,
+	"includeVersion": true,
+	"readme": "./README.md",
+	"name": "is-0",
+	"navigation": {
+		"includeCategories": true,
+		"includeGroups": true
+	},
+	"categorizeByGroup": true,
+	"sort": ["source-order"],
+	"treatWarningsAsErrors": false
+}

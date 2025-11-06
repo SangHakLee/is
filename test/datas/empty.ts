@@ -1,5 +1,10 @@
-/* eslint-disable no-new-object, no-new-func */
-module.exports = {
+ 
+export interface TestData {
+	valid: ReadonlyArray<any>
+	invalid: ReadonlyArray<any>
+}
+
+const data: TestData = {
 	valid: Object.freeze([
 		'', [], {},
 		new String(), [], new Object(),
@@ -9,7 +14,7 @@ module.exports = {
 	]),
 	invalid: Object.freeze([
 		true, false, new Boolean(),
-		new Number(), NaN, new Date(), new RegExp(), new Error(),
+		new Number(), NaN, new Date(), new RegExp(''), new Error(''),
 		Math,
 		1, 1.0, 'string', [1], {a: 1},
 		`${1}`,
@@ -23,3 +28,5 @@ module.exports = {
 		DataView, new DataView(new ArrayBuffer()),
 	]),
 }
+
+export default data

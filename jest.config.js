@@ -1,11 +1,17 @@
 module.exports = {
+	preset: 'ts-jest',
 	testEnvironment: 'node',
-	coverageDirectory: 'coverage',
+	roots: ['<rootDir>/test'],
+	testMatch: ['**/*.test.ts'],
 	collectCoverageFrom: [
-		'src/**/*.js',
-		'!src/**/*.test.js',
+		'src/**/*.ts',
+		'index.ts',
+		'!**/*.d.ts',
 		'!**/node_modules/**',
+		'!**/dist/**',
 	],
+	coverageDirectory: 'coverage',
+	coverageReporters: ['text', 'lcov', 'json', 'html'],
 	coverageThreshold: {
 		global: {
 			branches: 75,
@@ -14,13 +20,10 @@ module.exports = {
 			statements: 80,
 		},
 	},
-	testMatch: [
-		'**/test/**/*.test.js',
-	],
-	coverageReporters: [
-		'text',
-		'lcov',
-		'json',
-		'html',
-	],
+	moduleFileExtensions: ['ts', 'js', 'json'],
+	transform: {
+		'^.+\\.ts$': ['ts-jest', {
+			tsconfig: 'tsconfig.test.json',
+		}],
+	},
 }
