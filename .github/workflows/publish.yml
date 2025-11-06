@@ -1,0 +1,82 @@
+name: Publish Package
+
+on:
+  push:
+    tags:
+      - 'v*'  # v1.0.0 형태의 태그가 push되면 실행
+
+permissions:
+  contents: write
+  packages: write
+
+jobs:
+  publish:
+    name: Publish to npm and GitHub
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js for npm
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          registry-url: 'https://registry.npmjs.org'
+          cache: 'npm'
+
+      - name: Install dependencies
+        env:
+          HUSKY: 0
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      # npm 배포 (NPM_TOKEN이 있을 때만)
+      - name: Publish to npm
+        if: ${{ vars.NPM_TOKEN_EXISTS == 'true' }}  # Repository variables에서 체크
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        continue-on-error: true  # 실패해도 계속 진행
+
+      # GitHub Packages 배포
+      - name: Setup for GitHub Packages
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          registry-url: 'https://npm.pkg.github.com'
+
+      - name: Publish to GitHub Packages
+        run: |
+          # Repository owner 자동 감지
+          REPO_OWNER="${{ github.repository_owner }}"
+          echo "📦 Publishing as @${REPO_OWNER}/is-0"
+          
+          # package.json의 name 필드를 동적으로 수정
+          node -e "
+            const fs = require('fs');
+            const pkg = require('./package.json');
+            pkg.name = '@${REPO_OWNER}/is-0';
+            fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2));
+            console.log('Package name updated to:', pkg.name);
+          "
+          
+          # .npmrc 설정 (명시적으로)
+          echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" > .npmrc
+          echo "@${REPO_OWNER}:registry=https://npm.pkg.github.com" >> .npmrc
+          
+          # 발행
+          npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # GitHub Release 생성
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
+          draft: false
+          prerelease: false
+          token: ${{ secrets.GITHUB_TOKEN }}

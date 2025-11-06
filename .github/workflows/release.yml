@@ -6,13 +6,13 @@ on:
       - master
 
 permissions:
-  contents: write
-  issues: write
-  pull-requests: write
+  contents: write      # 태그, 릴리스 생성
+  issues: write       # 이슈 코멘트 (semantic-release)
+  pull-requests: write # PR 코멘트
 
 jobs:
   release:
-    name: Release
+    name: Create Release
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, '[skip ci]')"
 
@@ -21,45 +21,36 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          persist-credentials: false
+          token: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20.x'
+          registry-url: 'https://registry.npmjs.org'  # npm 배포용
           cache: 'npm'
 
       - name: Install dependencies
+        env:
+          HUSKY: 0
         run: npm ci
 
       - name: Build TypeScript
         run: npm run build
 
-      - name: Verify the integrity
-        run: npm audit signatures || true
-
       - name: Run test
         run: npm test
 
-      - name: Release to npm
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npx semantic-release
-
-      - name: Setup Node.js for GitHub Packages
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20.x'
-          registry-url: 'https://npm.pkg.github.com'
-          scope: '@SangHakLee'
-
-      - name: Publish to GitHub Packages
+      # Git 설정 추가 (중요!)
+      - name: Configure Git
         run: |
-          # GitHub Packages는 scoped package만 지원하므로 name을 수정
-          node -e "const pkg = require('./package.json'); pkg.name = '@SangHakLee/is-0'; require('fs').writeFileSync('package.json', JSON.stringify(pkg, null, 2));"
-          echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" > .npmrc
-          echo "@SangHakLee:registry=https://npm.pkg.github.com" >> .npmrc
-          npm publish --access public || echo "GitHub Packages publish skipped"
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Create Release
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}  # npm 배포용
+          HUSKY: 0
+        run: npx semantic-release

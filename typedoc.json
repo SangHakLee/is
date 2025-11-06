@@ -13,6 +13,10 @@
 		"includeCategories": true,
 		"includeGroups": true
 	},
+    "navigationLinks": {
+      "GitHub": "https://github.com/SangHakLee/is",
+      "npm": "https://www.npmjs.com/package/is-0"
+    },
 	"categorizeByGroup": true,
 	"sort": ["source-order"],
 	"treatWarningsAsErrors": false
