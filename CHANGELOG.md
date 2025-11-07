@@ -1,3 +1,7 @@
+## <small>1.2.1 (2025-11-07)</small>
+
+* fix: github actions 워크플로우 수정 ([7127af7](https://github.com/SangHakLee/is/commit/7127af7))
+
 ## 1.2.0 (2025-11-07)
 
 * feat: npm publish 될 수 있게 변경 ([6b58a23](https://github.com/SangHakLee/is/commit/6b58a23))
