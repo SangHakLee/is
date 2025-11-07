@@ -1,3 +1,7 @@
+## <small>1.2.2 (2025-11-07)</small>
+
+* fix: static.yml에 contents write 권한 추가 ([c5f054a](https://github.com/SangHakLee/is/commit/c5f054a))
+
 ## <small>1.2.1 (2025-11-07)</small>
 
 * fix: github actions 워크플로우 수정 ([7127af7](https://github.com/SangHakLee/is/commit/7127af7))
