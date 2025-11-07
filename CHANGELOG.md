@@ -1,3 +1,7 @@
+## 1.3.0 (2025-11-07)
+
+* feat: github packages 패키지명을 is-0으로 통일 ([85f0ae0](https://github.com/SangHakLee/is/commit/85f0ae0))
+
 ## <small>1.2.2 (2025-11-07)</small>
 
 * fix: static.yml에 contents write 권한 추가 ([c5f054a](https://github.com/SangHakLee/is/commit/c5f054a))
