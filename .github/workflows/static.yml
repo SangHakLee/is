@@ -35,9 +35,6 @@ jobs:
   # 문서 빌드 및 배포
   deploy-docs:
     name: Deploy Documentation
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
 
     steps:

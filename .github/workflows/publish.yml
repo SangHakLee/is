@@ -71,9 +71,9 @@ jobs:
         run: |
           # Repository 이름 자동 감지
           REPO_NAME="${{ github.event.repository.name }}"
-          REPO_OWNER="${{ github.repository_owner }}"
+          REPO_OWNER=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
           echo "📦 Publishing as @${REPO_OWNER}/${REPO_NAME}"
-          
+
           # package.json의 name 필드를 동적으로 수정
           node -e "
             const fs = require('fs');
@@ -82,7 +82,7 @@ jobs:
             fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2));
             console.log('Package name updated to:', pkg.name);
           "
-          
+
           npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
