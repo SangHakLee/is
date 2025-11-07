@@ -22,7 +22,7 @@ on:
 
 # GitHub Pages 권한
 permissions:
-  contents: read
+  contents: write   # Release 업데이트를 위해 write 필요
   pages: write
   id-token: write
 
