@@ -1,3 +1,7 @@
+## 1.2.0 (2025-11-07)
+
+* feat: npm publish 될 수 있게 변경 ([6b58a23](https://github.com/SangHakLee/is/commit/6b58a23))
+
 ## 1.1.0 (2025-11-06)
 
 * ci: release ([f871019](https://github.com/SangHakLee/is/commit/f871019))
